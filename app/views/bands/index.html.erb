@@ -1,0 +1,6 @@
+<h1>Bands Baby Bands</h1>
+<%=button_to "New Band", action: "new"%>
+<%bands = Band.all.includes(:name)%>
+<%bands.each do |band|%>
+<a href="<%=band_url(band)%>%"><%=band.name%></a>
+<%end%>
