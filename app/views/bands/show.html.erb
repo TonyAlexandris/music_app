@@ -1,1 +1,28 @@
-<h1>@band.name</h1>
+<h1><%=@band.name%></h1>
+
+<%if flash[:deleted_album]%>
+<p><%=flash[:deleted_album]%></p>
+<br>
+<%end%> 
+
+<a href=<%=new_band_album_url(@band)%>>New Album</a>
+<br>
+<h3>Albums</h3>
+<ul>
+<%albums = @band.albums%>
+<%albums.each do |album|%>
+    <li>
+    <a href=<%=album_url(album)%> ><%=album.title%></a>
+    </li>
+<%end%>
+</ul>
+
+<form action=<%=edit_band_url(@band)%> method= "GET">
+    <input type="submit" value="Edit Band">
+</form>
+
+<form action=<%=band_url(@band)%> method= "POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <%= auth_token %>
+    <input type="submit" value="Delete Band">
+</form>

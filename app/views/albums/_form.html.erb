@@ -1,0 +1,31 @@
+<%if album.persisted?%>
+    <%action = album_url(album)%>
+    <%method = "PATCH"%>
+    <%button_text = "Submit Edit"%>
+<%else%>
+    <%action = albums_url%>
+    <%method = "POST"%>
+    <%button_text = "Add Album"%>
+<%end%>
+
+<form action="<%=action%>" method="post">
+    <input type="hidden" name="_method" value=<%=method%>>
+    <%= auth_token %>
+    <label for="title"> Album Title
+        <input type="text" name="album[title]" id="title" value = "<%=album.title%>">
+    </label>
+    <br>
+    <label for="year"> Year
+        <input type="number" name="album[year]" id="year" value = "<%=album.year%>">
+    </label>
+     <br>
+     <p>Album Type</p>
+        <label for="studio"> Studio
+        <input type="radio" name="album[studio_album]" id="studio" value = "true">
+        </label>
+        <label for="live"> Live
+        <input type="radio" name="album[studio_album]" id="live" value = "false">
+        </label>
+     <br>
+    <input type="submit" value="<%=button_text%>">
+</form>

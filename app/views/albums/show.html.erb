@@ -1,0 +1,19 @@
+<%band = Band.find(@album.band_id)%>
+<h1><%=@album.title%> by <a href=<%=band_url(band)%>><%=band.name%></a></h1>
+
+<%if flash[:deleted_track]%>
+<p><%=flash[:deleted_track]%></p>
+<br>
+<%end%> 
+<p>Year: <%=@album.year%></p>
+<p><%=@album.studio_album ? "Studio Album": "Live Album"%></p>
+
+<form action=<%=edit_album_url(@album)%> method= "GET">
+    <input type="submit" value="Edit Album">
+</form>
+
+<form action=<%=album_url(@album)%> method= "POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <%= auth_token %>
+    <input type="submit" value="Delete Album">
+</form>

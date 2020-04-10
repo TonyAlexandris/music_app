@@ -2,8 +2,9 @@
 class BandsController < ApplicationController
 
     def index
-        @bands = Band.all
+        @bands = Band.all.order(:name)
         render :index
+
     end
 
     def show
@@ -44,8 +45,8 @@ class BandsController < ApplicationController
     def destroy
         @band = Band.find_by(id: params[:id])
         @band.destroy
-        flash[:errors] = "Deleted #{@band.name}"
-        render :index
+        flash[:deleted_band] = "Deleted Band: #{@band.name}"
+        redirect_to bands_url
     end
 
     private
