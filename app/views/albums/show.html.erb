@@ -8,6 +8,19 @@
 <p>Year: <%=@album.year%></p>
 <p><%=@album.studio_album ? "Studio Album": "Live Album"%></p>
 
+<a href=<%=new_album_track_url(@album)%>>New Track</a>
+<br>
+<h3>Tracks</h3>
+<ul>
+<%tracks = @album.tracks.order(:ord)%>
+<%tracks.each do |track|%>
+    <li>
+    <a href=<%=track_url(track)%> ><%=track.title%></a>
+    </li>
+<%end%>
+</ul>
+
+
 <form action=<%=edit_album_url(@album)%> method= "GET">
     <input type="submit" value="Edit Album">
 </form>

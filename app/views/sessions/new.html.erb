@@ -1,6 +1,11 @@
 <h1>Log In</h1>
 <%= render 'shared/errors' %>
 
+<%if flash[:log_in_first]%>
+<p><%=flash[:log_in_first]%></p>
+<br>
+<%end%> 
+
 <form action="<%=session_url%>" method="post">
     <%= auth_token %>
     <label for="email"> Email Address

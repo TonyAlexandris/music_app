@@ -1,10 +1,11 @@
 
 class BandsController < ApplicationController
 
+    before_action :send_to_login, except: [:index]
+
     def index
         @bands = Band.all.order(:name)
         render :index
-
     end
 
     def show

@@ -1,6 +1,8 @@
 
 class AlbumsController < ApplicationController
 
+    before_action :send_to_login
+
     def new
         @album = Album.new
         flash[:band_id] = params[:band_id]

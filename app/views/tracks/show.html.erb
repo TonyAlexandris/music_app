@@ -1,0 +1,16 @@
+<%album = Album.find(@track.album_id)%>
+<h1><%=@track.title%> from <a href=<%=album_url(album)%>><%=album.title%></a></h1>
+
+
+<p>Track Number: <%=@track.ord%></p>
+<p><%=@track.bonus_track ? "Bonus Track": "Regular Track"%></p>
+
+<form action=<%=edit_track_url(@track)%> method= "GET">
+    <input type="submit" value="Edit Track">
+</form>
+
+<form action=<%=track_url(@track)%> method= "POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <%= auth_token %>
+    <input type="submit" value="Delete Track">
+</form>
