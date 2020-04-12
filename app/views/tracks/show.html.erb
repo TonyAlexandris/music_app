@@ -5,6 +5,25 @@
 <p>Track Number: <%=@track.ord%></p>
 <p><%=@track.bonus_track ? "Bonus Track": "Regular Track"%></p>
 
+<%= render "notes/note", track: @track%>
+
+<h3>Notes</h3>
+<ul>
+<%notes = @track.notes.includes(:user).order(:created_at)%>
+<%notes.each do |note|%>
+    <li>
+    <p><%=note.user.email%> : <%=note.text%></p>
+    <%if current_user.id == note.user_id%>
+        <form action="<%=note_url(note)%>" method="post">
+        <%= auth_token %>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Your Note">
+        </form>
+    <%end%>
+    </li>
+<%end%>
+</ul>
+
 <form action=<%=edit_track_url(@track)%> method= "GET">
     <input type="submit" value="Edit Track">
 </form>

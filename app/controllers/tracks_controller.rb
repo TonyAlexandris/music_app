@@ -12,6 +12,7 @@ class TracksController < ApplicationController
     def create
         @track = Track.new(track_params)
         @track.album_id = flash[:album_id]
+        fail
         if @track.save
             redirect_to album_url(Album.find(@track.album_id))
         else
