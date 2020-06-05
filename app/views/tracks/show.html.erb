@@ -6,9 +6,9 @@
 <p><%=@track.bonus_track ? "Bonus Track": "Regular Track"%></p>
 
 <h4>Lyrics</h4>
-
-<p><%=ugly_lyrics(@track.lyrics)%></p>
-
+<section class="lyrics">
+<p ><%=ugly_lyrics(@track.lyrics)%></p>
+</section>
 <%= render "notes/note", track: @track%>
 
 <h3>Notes</h3>
